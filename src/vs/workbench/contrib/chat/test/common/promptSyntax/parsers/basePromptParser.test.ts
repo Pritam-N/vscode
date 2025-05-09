@@ -35,7 +35,32 @@ import { OpenFailed, RecursiveReference } from '../../../../common/promptFileRef
 /**
  * TODO: @legomushroom
  */
-class Test extends Disposable { }
+class Test extends Disposable {
+	constructor(
+		public readonly text: string,
+	) { }
+
+	public override dispose(): void {
+		console.log(this.text);
+		super.dispose();
+	}
+}
+
+const proxyTest = <T extends object>(object: T): T => {
+	return new Proxy(object, {
+		get(target, prop, receiver) {
+			if (prop === 'text') {
+				return 'overridden text';
+			}
+
+			return Reflect.get(target, prop);
+		},
+	});
+};
+
+const test = proxyTest(new Test('original text'));
+
+test.dispose();
 
 /**
  * TODO: @legomushroom
