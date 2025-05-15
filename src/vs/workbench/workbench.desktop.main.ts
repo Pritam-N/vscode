@@ -89,7 +89,7 @@ import '../platform/extensionManagement/electron-sandbox/extensionsProfileScanne
 import '../platform/webContentExtractor/electron-sandbox/webContentExtractorService.js';
 import './services/process/electron-sandbox/processService.js';
 
-import { registerSingleton } from '../platform/instantiation/common/extensions.js';
+import { registerSingleton, InstantiationType } from '../platform/instantiation/common/extensions.js';
 import { IUserDataInitializationService, UserDataInitializationService } from './services/userData/browser/userDataInit.js';
 import { SyncDescriptor } from '../platform/instantiation/common/descriptors.js';
 
@@ -179,7 +179,13 @@ import './contrib/emergencyAlert/electron-sandbox/emergencyAlert.contribution.js
 // MCP
 import './contrib/mcp/electron-sandbox/mcp.contribution.js';
 
+// Project Info
+import './contrib/projectInfo/electron-sandbox/projectInfo.contribution.js';
+
 //#endregion
 
+import { ProjectDetectionService } from './services/projectDetection/browser/projectDetectionService.js';
+import { IProjectDetectionService } from './services/projectDetection/common/projectDetectionService.js';
+registerSingleton(IProjectDetectionService, ProjectDetectionService, InstantiationType.Delayed)
 
 export { main } from './electron-sandbox/desktop.main.js';

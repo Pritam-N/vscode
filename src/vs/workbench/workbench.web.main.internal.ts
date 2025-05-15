@@ -169,6 +169,8 @@ import './contrib/remote/browser/remoteStartEntry.contribution.js';
 // Process Explorer
 import './contrib/processExplorer/browser/processExplorer.web.contribution.js';
 
+import './services/projectDetection/browser/projectDetection.contribution.js';
+import './contrib/projectInfo/browser/projectInfo.contribution.js';
 //#endregion
 
 
